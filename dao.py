@@ -1,9 +1,7 @@
-from models import Tarefa, Usuario
-
 import sqlite3
 
-db = sqlite3.connect('banco.db', check_same_thread=False)
-cursor = db.cursor()
+from models import Tarefa, Usuario
+
 
 # SQL
 
@@ -13,11 +11,13 @@ SQL_CRIA_TAREFA = 'INSERT into TAREFA (NOME, DESCRICAO, TIPO, STATUS, PRIORIDADE
 # Atualização
 SQL_ATUALIZA_TAREFA = 'UPDATE TAREFA SET NOME = ?, DESCRICAO = ?, TIPO = ?, STATUS = ?, PRIORIDADE = ? where ID = ?'
 
+
 class TarefaDao:
+    def __init__(self, db) -> None:
+        self.__db = db
 
-
-    def salvar(tarefa):
-        cursor = db.cursor()
+    def salvar(self, tarefa):
+        cursor = self.__db.cursor()
 
         if (tarefa._id):
             cursor.execute(SQL_ATUALIZA_TAREFA, (tarefa._nome, tarefa._descricao, tarefa._tipo, tarefa._status, tarefa._prioridade))
@@ -26,5 +26,5 @@ class TarefaDao:
             cursor.execute(SQL_CRIA_TAREFA, (tarefa._nome, tarefa._descricao, tarefa._tipo, tarefa._status, tarefa._prioridade))
             
 
-        db.commit()
+        self.__db.commit()
         return tarefa

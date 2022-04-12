@@ -4,9 +4,15 @@ from dao import TarefaDao
 
 from models import Tarefa, Usuario
 
+import sqlite3
+
 
 app = Flask(__name__)
 app.secret_key = 'ENGII'
+
+db = sqlite3.connect('banco.db', check_same_thread=False)
+
+tarefa_dao = TarefaDao(db)
 
 
 @app.route('/')
@@ -37,8 +43,8 @@ def criar():
     prioridade = request.form['prioridade']
 
     tarefa = Tarefa(nome, descricao, tipo, status, prioridade)
-
-    TarefaDao.salvar(tarefa)
+    
+    tarefa = tarefa_dao.salvar(tarefa)
 
     return redirect('/sobre')
 
