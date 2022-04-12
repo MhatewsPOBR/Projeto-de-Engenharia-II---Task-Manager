@@ -1,6 +1,7 @@
+from crypt import methods
 from flask import Flask, render_template, request, redirect, session, flash
 
-from dao import TarefaDao
+from dao import TarefaDao, UsuarioDao
 
 from models import Tarefa, Usuario
 
@@ -12,7 +13,10 @@ app.secret_key = 'ENGII'
 
 db = sqlite3.connect('banco.db', check_same_thread=False)
 
+# dao
+
 tarefa_dao = TarefaDao(db)
+usuario_dao = UsuarioDao(db)
 
 
 @app.route('/')
@@ -47,6 +51,19 @@ def criar():
     tarefa = tarefa_dao.salvar(tarefa)
 
     return redirect('/sobre')
+
+
+@app.route('criar_usuario', method=['POST', ])
+def criar_usuario():
+    username = request.form['username']
+    email = request.form['email']
+    senha = request.form['senha']
+    
+    usuario = Usuario(username, email, senha)
+    
+    usuario_dao.salvar_usuario(usuario)
+    
+    return redirect('/')
 
 
 @app.route('/status')
