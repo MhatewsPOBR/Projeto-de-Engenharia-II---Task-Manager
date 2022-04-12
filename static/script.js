@@ -27,3 +27,11 @@ document.getElementById("login-form").style.display = 'block'
 function closeLogin() {
 document.getElementById("login-form").style.display = 'none'
 }
+
+function openCreateAccount () {
+  document.getElementById("create-account").style.display = 'block'
+}
+
+function closeCreateAccount () {
+  document.getElementById("create-account").style.display = 'none'
+}

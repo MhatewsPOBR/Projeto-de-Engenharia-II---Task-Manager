@@ -42,11 +42,10 @@ class UsuarioDao:
         cursor = self.__db.cursor()
         
         if (usuario._id):
-            cursor.execute(SQL_ATUALIZA_USUARIO, (usuario._username, usuario._email, usuario._senha, usuario._id))
+            cursor.execute(SQL_ATUALIZA_USUARIO, (usuario._nome, usuario._email, usuario._senha, usuario._id))
             
         else:
-            cursor.execute(SQL_CRIA_USUARIO, (usuario._username, usuario._email, usuario._senha))
-            cursor._id = cursor.lastrowid
+            cursor.execute(SQL_CRIA_USUARIO, (usuario._nome, usuario._email, usuario._senha))
             
         self.__db.commit()
         return usuario

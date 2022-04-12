@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, render_template, request, redirect, session, flash
 
 from dao import TarefaDao, UsuarioDao
@@ -53,7 +52,7 @@ def criar():
     return redirect('/sobre')
 
 
-@app.route('criar_usuario', method=['POST', ])
+@app.route('/criar_usuario', methods=['POST', ])
 def criar_usuario():
     username = request.form['username']
     email = request.form['email']
