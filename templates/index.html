@@ -90,6 +90,7 @@
       <div id="main">
     {% for tarefa in tarefas %}
         <div class="task-div">
+            <input type="hidden" value="{{ tarefa._id }}">
             <h3>{{ tarefa._nome }}</h3>
             <p>{{ tarefa._descricao }}</p>
         </div>
