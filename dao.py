@@ -9,6 +9,8 @@ from models import Tarefa, Usuario
 # Criação
 SQL_CRIA_TAREFA = 'INSERT into TAREFA (NOME, DESCRICAO, TIPO, STATUS, PRIORIDADE) values (?, ?, ?, ?, ?)'
 
+SQL_BUSCA_TAREFA = 'SELECT * FROM TAREFA'
+
 SQL_CRIA_USUARIO = 'INSERT into USUARIO (USERNAME, EMAIL, SENHA) values (?, ?, ?)'
 
 # Atualização
@@ -32,6 +34,18 @@ class TarefaDao:
 
         self.__db.commit()
         return tarefa
+    
+    def listar(self):
+        cursor = self.__db.cursor()
+        cursor.execute(SQL_BUSCA_TAREFA)
+        tarefas = traduz_tarefas(cursor.fetchall())
+        return tarefas
+    
+    
+def traduz_tarefas(tarefas):
+    def cria_tarefas_com_tupla(tupla):
+        return Tarefa(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], id=tupla[0])
+    return list(map(cria_tarefas_com_tupla, tarefas))
     
 
 class UsuarioDao:

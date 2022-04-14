@@ -8,7 +8,7 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-/*MODAL FORM*/
+/* MODAL FORM */
 
 function openForm() {
 document.getElementById("create-form").style.display = 'block'
@@ -18,7 +18,7 @@ function closeForm() {
 document.getElementById("create-form").style.display = 'none'
 }
 
-/*MODAL LOGIN*/
+/* MODAL LOGIN */
 
 function openLogin() {
 document.getElementById("login-form").style.display = 'block'
@@ -27,6 +27,8 @@ document.getElementById("login-form").style.display = 'block'
 function closeLogin() {
 document.getElementById("login-form").style.display = 'none'
 }
+
+/* MODAL CREATE ACCOUNT */
 
 function openCreateAccount () {
   document.getElementById("create-account").style.display = 'block'

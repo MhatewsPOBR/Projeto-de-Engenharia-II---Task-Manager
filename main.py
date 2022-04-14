@@ -21,8 +21,9 @@ usuario_dao = UsuarioDao(db)
 @app.route('/')
 def index():
     proxima = request.args.get('proxima')
+    lista = tarefa_dao.listar()
 
-    return render_template('index.html', proxima=proxima)
+    return render_template('index.html', proxima=proxima, tarefas=lista)
 
 
 @app.route('/autenticar')
@@ -63,6 +64,13 @@ def criar_usuario():
     usuario_dao.salvar_usuario(usuario)
     
     return redirect('/')
+
+
+@app.route('/lista_de_tarefas')
+def lista_de_tarefas():
+    lista = tarefa_dao.listar()
+    
+    return render_template('index.html', tarefas=lista)
 
 
 @app.route('/status')
