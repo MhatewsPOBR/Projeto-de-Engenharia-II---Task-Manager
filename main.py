@@ -66,6 +66,12 @@ def criar_usuario():
     return redirect('/')
 
 
+@app.route('/editar_tarefa')
+def editar_tarefa():
+    
+    return redirect('/')
+
+
 @app.route('/lista_de_tarefas')
 def lista_de_tarefas():
     lista = tarefa_dao.listar()
@@ -78,6 +84,13 @@ def tarefa_info(id):
     tarefa = tarefa_dao.busca_por_id(id)
     
     return render_template('tarefa_info.html', tarefa=tarefa)
+
+
+@app.route('/deletar_tarefa/<int:id>')
+def deletar_tarefa(id):
+    tarefa_dao.deletar(id)
+    
+    return redirect('/')
 
 
 @app.route('/status')

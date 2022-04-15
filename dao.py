@@ -58,7 +58,7 @@ class TarefaDao:
         return Tarefa(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], id=tupla[0])
     
     def deletar(self, id):
-        self.__db.cursor().execute(SQL_DELETA_TAREFA, (id))
+        self.__db.cursor().execute(SQL_DELETA_TAREFA, (id, ))
         self.__db.commit()
     
     

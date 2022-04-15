@@ -14,6 +14,7 @@
             <p>{{tarefa._descricao}}</p>
             <p>{{tarefa._prioridade}}</p>
 
+            <a href="{{ url_for('deletar_tarefa', id=tarefa._id) }}">deletar</a>
         </div>
     </main>
 </body>
