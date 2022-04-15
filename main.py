@@ -73,6 +73,13 @@ def lista_de_tarefas():
     return render_template('index.html', tarefas=lista)
 
 
+@app.route('/tarefa_info/<int:id>')
+def tarefa_info(id):
+    tarefa = tarefa_dao.busca_por_id(id)
+    
+    return render_template('tarefa_info.html', tarefa=tarefa)
+
+
 @app.route('/status')
 def status():
 

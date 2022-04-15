@@ -112,7 +112,6 @@ body {
 .task-div:hover {
   background-color: var(--cards-sec);
   box-shadow: 5px 10px 20px 5px rgba(0,0,0,0.2);
-  cursor: pointer;
   transform: scale(1.1);
 }
 
